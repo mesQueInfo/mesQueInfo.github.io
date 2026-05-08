@@ -274,7 +274,7 @@
   // ── Config ────────────────────────────────────────────────────────────────
   // data.json s'actualitza cada vegada que el Pi fa una lectura.
   // El dashboard refresca cada 60s (pots reduir-ho però GitHub té límit de CDN caché ~60s).
-  const DATA_URL      = "./data.json";
+  const DATA_URL      = "data.json";//"./data.json";
   const REFRESH_MS    = 60_000;   // 60 segons
   const STALE_MINUTES = 5;        // Considera obsolet si >5 min sense actualitzar
 
