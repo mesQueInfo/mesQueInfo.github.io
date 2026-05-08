@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DS18B20 Temperature Monitor</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@200;400;700&display=swap');
+
+  :root {
+    --bg:     #0a0e14;
+    --panel:  #0f1520;
+    --border: #1a2840;
+    --cyan:   #00d4ff;
+    --green:  #00ff9d;
+    --amber:  #ffb700;
+    --red:    #ff4560;
+    --text:   #c8d8e8;
+    --dim:    #4a6080;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none; z-index: 0;
+  }
+
+  header {
+    position: relative; z-index: 1;
+    padding: 24px 32px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 16px;
+  }
+
+  .logo {
+    width: 36px; height: 36px;
+    border: 2px solid var(--cyan); border-radius: 6px;
+    display: grid; place-items: center;
+    font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--cyan);
+    animation: pulse-border 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-border {
+    0%,100% { box-shadow: 0 0 20px rgba(0,212,255,.35); }
+    50%      { box-shadow: 0 0 30px rgba(0,212,255,.6); }
+  }
+
+  header h1 { font-size: 18px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); }
+  header p  { font-size: 11px; color: var(--dim); letter-spacing: 1px; margin-top: 2px; }
+
+  .header-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+
+  .status-pill {
+    font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 1px;
+    padding: 4px 10px; border-radius: 20px;
+    border: 1px solid var(--border); color: var(--dim);
+    transition: all .4s;
+  }
+  .status-pill.ok    { border-color: var(--green); color: var(--green); background: rgba(0,255,157,.06); }
+  .status-pill.stale { border-color: var(--amber); color: var(--amber); background: rgba(255,183,0,.06); }
+  .status-pill.error { border-color: var(--red);   color: var(--red);   background: rgba(255,69,96,.06); animation: blink 1.2s step-end infinite; }
+
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .refresh-info { font-size: 10px; color: var(--dim); }
+
+  main {
+    position: relative; z-index: 1;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+    max-width: 1200px; width: 100%; margin: 0 auto;
+  }
+
+  /* ── Temp card ── */
+  .temp-card {
+    grid-row: 1 / 3;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
+    padding: 32px 24px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    position: relative; overflow: hidden;
+  }
+
+  .temp-card::before {
+    content: ''; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);
+    width: 260px; height: 260px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,212,255,.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .temp-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--dim); }
+
+  .temp-value {
+    font-family: 'Share Tech Mono', monospace; font-size: 72px; line-height: 1;
+    color: var(--cyan); text-shadow: 0 0 20px rgba(0,212,255,.35);
+    transition: color .4s, text-shadow .4s;
+  }
+  .temp-value.hot  { color: var(--amber); text-shadow: 0 0 20px rgba(255,183,0,.4); }
+  .temp-value.cold { color: #60b0ff;      text-shadow: 0 0 20px rgba(96,176,255,.4); }
+
+  .temp-unit { font-family: 'Share Tech Mono', monospace; font-size: 28px; color: var(--dim); }
+  .temp-secondary { font-family: 'Share Tech Mono', monospace; font-size: 18px; color: var(--dim); margin-top: 8px; }
+  .last-update { font-size: 10px; color: var(--dim); letter-spacing: 1px; margin-top: 16px; text-align: center; }
+
+  .thermo-wrap { width: 100%; margin-top: 20px; }
+  .thermo-bar { width: 100%; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .thermo-fill {
+    height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, #60b0ff, var(--cyan), var(--amber), var(--red));
+    transition: width .8s cubic-bezier(.4,0,.2,1);
+  }
+  .thermo-labels { display: flex; justify-content: space-between; font-size: 9px; color: var(--dim); margin-top: 4px; }
+
+  .btn {
+    margin-top: 20px; padding: 10px 20px;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: transparent; color: var(--dim);
+    font-family: 'Exo 2', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: border-color .2s, color .2s, box-shadow .2s;
+  }
+  .btn:hover { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 20px rgba(0,212,255,.35); }
+
+  /* ── Stats row ── */
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  .stat-card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  }
+  .stat-card .label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); margin-bottom: 6px; }
+  .stat-card .value { font-family: 'Share Tech Mono', monospace; font-size: 26px; color: var(--text); }
+  .stat-card.hi .value { color: var(--red); }
+  .stat-card.lo .value { color: #60b0ff; }
+  .stat-card.avg .value { color: var(--green); }
+
+  /* ── Chart ── */
+  .chart-card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 20px 12px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .chart-header { display: flex; justify-content: space-between; align-items: center; }
+  .chart-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); }
+  .chart-toggle { display: flex; gap: 6px; }
+  .chart-toggle button {
+    padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px;
+    background: transparent; color: var(--dim);
+    font-family: 'Share Tech Mono', monospace; font-size: 10px; cursor: pointer; transition: all .2s;
+  }
+  .chart-toggle button.active { border-color: var(--cyan); color: var(--cyan); background: rgba(0,212,255,.08); }
+  canvas#chart { width: 100% !important; height: 180px !important; }
+
+  /* ── Log table ── */
+  .log-card {
+    grid-column: 1 / -1;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 20px; max-height: 220px; overflow-y: auto;
+  }
+  .log-card::-webkit-scrollbar { width: 4px; }
+  .log-card::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .log-header { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--dim); text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--border);
+  }
+  td {
+    font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--text);
+    padding: 5px 8px; border-bottom: 1px solid rgba(26,40,64,.5);
+  }
+  tr:first-child td { color: var(--cyan); }
+
+  footer {
+    position: relative; z-index: 1;
+    padding: 12px 32px; border-top: 1px solid var(--border);
+    font-size: 10px; color: var(--dim); letter-spacing: 1px;
+    display: flex; justify-content: space-between;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 700px) {
+    main { grid-template-columns: 1fr; padding: 16px; }
+    .temp-card { grid-row: auto; }
+    .stats-row { grid-template-columns: repeat(3,1fr); }
+    .log-card { grid-column: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">B20</div>
+  <div>
+    <h1>Temperature Monitor</h1>
+    <p>DS18B20 · Raspberry Pi · GitHub Pages</p>
+  </div>
+  <div class="header-right">
+    <span class="refresh-info" id="nextRefresh"></span>
+    <span class="status-pill" id="statusPill">connectant…</span>
+  </div>
+</header>
+
+<main>
+  <div class="temp-card">
+    <div class="temp-label">Temperatura Actual</div>
+    <div style="display:flex;align-items:flex-start;gap:6px">
+      <div class="temp-value" id="tempC">--.-</div>
+      <div class="temp-unit">°C</div>
+    </div>
+    <div class="temp-secondary" id="tempF">-- °F</div>
+    <div class="last-update" id="lastUpdate">Esperant dades…</div>
+
+    <div class="thermo-wrap">
+      <div class="thermo-bar">
+        <div class="thermo-fill" id="thermoFill" style="width:0%"></div>
+      </div>
+      <div class="thermo-labels"><span>-10°</span><span>20°</span><span>50°C</span></div>
+    </div>
+
+    <a class="btn" id="csvLink" href="temperature_log.csv" download>⬇ Descarregar CSV</a>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card hi"><div class="label">Màxim</div><div class="value" id="statMax">--</div></div>
+    <div class="stat-card lo"><div class="label">Mínim</div><div class="value" id="statMin">--</div></div>
+    <div class="stat-card avg"><div class="label">Mitjana</div><div class="value" id="statAvg">--</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-header">
+      <div class="chart-title">Historial de Temperatura</div>
+      <div class="chart-toggle">
+        <button class="active" onclick="setUnit('C')">°C</button>
+        <button onclick="setUnit('F')">°F</button>
+      </div>
+    </div>
+    <canvas id="chart"></canvas>
+  </div>
+
+  <div class="log-card">
+    <div class="log-header">Lectures Recents</div>
+    <table>
+      <thead><tr><th>#</th><th>Timestamp</th><th>°C</th><th>°F</th></tr></thead>
+      <tbody id="logBody"></tbody>
+    </table>
+  </div>
+</main>
+
+<footer>
+  <span>Sensor: DS18B20 / GPIO4 · 1-Wire</span>
+  <span id="footerCount">0 lectures</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+  // ── Config ────────────────────────────────────────────────────────────────
+  // data.json s'actualitza cada vegada que el Pi fa una lectura.
+  // El dashboard refresca cada 60s (pots reduir-ho però GitHub té límit de CDN caché ~60s).
+  const DATA_URL      = "./data.json";
+  const REFRESH_MS    = 60_000;   // 60 segons
+  const STALE_MINUTES = 5;        // Considera obsolet si >5 min sense actualitzar
+
+  let unit    = 'C';
+  let history = [];
+  let countdown = REFRESH_MS / 1000;
+
+  // ── Chart ─────────────────────────────────────────────────────────────────
+  const ctx = document.getElementById('chart').getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: { labels: [], datasets: [{
+      label: '°C', data: [],
+      borderColor: '#00d4ff', borderWidth: 2,
+      pointRadius: 2, pointBackgroundColor: '#00d4ff',
+      fill: true,
+      backgroundColor: c => {
+        const g = c.chart.ctx.createLinearGradient(0,0,0,180);
+        g.addColorStop(0,'rgba(0,212,255,.18)'); g.addColorStop(1,'rgba(0,212,255,0)');
+        return g;
+      },
+      tension: 0.4,
+    }]},
+    options: {
+      responsive: true, maintainAspectRatio: false, animation: { duration: 400 },
+      scales: {
+        x: { ticks: { color:'#4a6080', font:{family:'Share Tech Mono',size:9}, maxTicksLimit:8 }, grid:{color:'rgba(26,40,64,.8)'} },
+        y: { ticks: { color:'#4a6080', font:{family:'Share Tech Mono',size:10} }, grid:{color:'rgba(26,40,64,.8)'} }
+      },
+      plugins: { legend:{display:false}, tooltip:{
+        backgroundColor:'#0f1520', borderColor:'#1a2840', borderWidth:1,
+        titleColor:'#4a6080', bodyColor:'#00d4ff',
+        titleFont:{family:'Share Tech Mono'}, bodyFont:{family:'Share Tech Mono'},
+      }}
+    }
+  });
+
+  function setUnit(u) {
+    unit = u;
+    document.querySelectorAll('.chart-toggle button').forEach(b =>
+      b.classList.toggle('active', b.textContent === '°' + u));
+    renderChart();
+  }
+
+  function renderChart() {
+    const last60 = history.slice(-60);
+    chart.data.labels = last60.map(r => r.time.slice(11,19));
+    chart.data.datasets[0].data = last60.map(r => unit==='C' ? r.celsius : r.fahrenheit);
+    chart.update('none');
+  }
+
+  // ── Render ────────────────────────────────────────────────────────────────
+  function render(updated) {
+    if (!history.length) return;
+    const latest = history[history.length - 1];
+
+    // Temperatura gran
+    const el = document.getElementById('tempC');
+    el.textContent = latest.celsius.toFixed(1);
+    el.className = 'temp-value' + (latest.celsius >= 35 ? ' hot' : latest.celsius <= 10 ? ' cold' : '');
+    document.getElementById('tempF').textContent = latest.fahrenheit.toFixed(1) + ' °F';
+    document.getElementById('lastUpdate').textContent = 'Última lectura: ' + latest.time;
+
+    // Barra termomètre
+    const pct = Math.min(100, Math.max(0, (latest.celsius + 10) / 60 * 100));
+    document.getElementById('thermoFill').style.width = pct + '%';
+
+    // Stats
+    const vals = history.map(r => r.celsius);
+    const max = Math.max(...vals), min = Math.min(...vals);
+    const avg = vals.reduce((a,b) => a+b, 0) / vals.length;
+    document.getElementById('statMax').textContent = max.toFixed(1) + '°';
+    document.getElementById('statMin').textContent = min.toFixed(1) + '°';
+    document.getElementById('statAvg').textContent = avg.toFixed(1) + '°';
+
+    // Log
+    const rows = [...history].reverse().slice(0, 30);
+    document.getElementById('logBody').innerHTML = rows.map((r,i) => `
+      <tr>
+        <td>${history.length - i}</td>
+        <td>${r.time}</td>
+        <td>${r.celsius.toFixed(3)}</td>
+        <td>${r.fahrenheit.toFixed(3)}</td>
+      </tr>`).join('');
+
+    document.getElementById('footerCount').textContent = history.length + ' lectures';
+
+    // Estat: comprovem si les dades són obsoletes
+    const pill = document.getElementById('statusPill');
+    const ageMin = (Date.now() - new Date(updated).getTime()) / 60000;
+    if (ageMin > STALE_MINUTES) {
+      pill.className = 'status-pill stale';
+      pill.textContent = `obsolet (${Math.floor(ageMin)} min)`;
+    } else {
+      pill.className = 'status-pill ok';
+      pill.textContent = 'en línia ✓';
+    }
+
+    renderChart();
+  }
+
+  // ── Fetch data.json ───────────────────────────────────────────────────────
+  async function fetchData() {
+    try {
+      // Cache-bust per evitar la CDN de GitHub
+      const url = DATA_URL + '?t=' + Date.now();
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      history = data.history || [];
+      render(data.updated);
+    } catch(e) {
+      const pill = document.getElementById('statusPill');
+      pill.className = 'status-pill error';
+      pill.textContent = 'error';
+      document.getElementById('lastUpdate').textContent = 'No s\'han pogut carregar les dades';
+      console.error(e);
+    }
+  }
+
+  // ── Countdown ─────────────────────────────────────────────────────────────
+  function tick() {
+    countdown--;
+    document.getElementById('nextRefresh').textContent =
+      countdown > 0 ? `refresh en ${countdown}s` : '';
+    if (countdown <= 0) {
+      countdown = REFRESH_MS / 1000;
+      fetchData();
+    }
+  }
+
+  fetchData();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
