@@ -17,7 +17,7 @@
 
 ---
 
-## 1\. Definició i tipus de xarxes
+## 1. Definició i tipus de xarxes
 
 ### Què és una xarxa?
 
@@ -71,11 +71,11 @@ senyal rebuda = senyal enviada + soroll
 
 **Segons la topologia**
 
-Classificació segons com s'interconnecten físicament o lògicament els nodes. Es tracta més endavant a l'apartat 5.
+Classificació segons com s'interconnecten físicament o lògicament els nodes. Es tractarà més endavant.
 
 ---
 
-## 2\. Arquitectura i tecnologia existent
+## 2. Arquitectura i tecnologia existent
 
 ### Serveis i protocols
 
@@ -191,7 +191,7 @@ Protocols habituals per capa en la pila TCP/IP:
 
 ---
 
-## 3\. Definició, característiques i funcionalitats associades als elements d'una xarxa
+## 3. Definició, característiques i funcionalitats associades als elements d'una xarxa
 
 ### Targeta de xarxa o NIC (capa 1/2)
 
@@ -293,7 +293,7 @@ Tipus:
 
 ---
 
-## 4\. Mitjans de transmissió: cables i sense fils
+## 4. Mitjans de transmissió: cables i sense fils
 
 El medi de transmissió és el material a través del qual viatgen els paquets de dades.
 
@@ -377,7 +377,7 @@ T = S / BW = 167.772.160 / 1.000.000.000 ≈ 0,168 s
 
 ---
 
-## 5\. Definicions de mapa físic i lògic d'una xarxa local
+## 5. Definicions de mapa físic i lògic d'una xarxa local
 
 Els plànols i gràfics que representen una xarxa s'han de documentar amb aplicacions informàtiques adequades.
 
@@ -471,13 +471,13 @@ Defineix el mètode que utilitzen els hosts per comunicar-se:
 
 ---
 
-## 6\. Estructures alternatives
+## 6. Estructures alternatives
 
 Quan una xarxa combina diverses topologies, es parla de **xarxa mixta** o **topologia híbrida**. És l'esquema més habitual en xarxes reals d'una certa mida (per exemple, estrella estesa combinada amb un nucli en malla parcial per redundància).
 
 ---
 
-## 7\. Normativa legal i tècnica d'implantació de xarxes locals
+## 7. Normativa legal i tècnica d'implantació de xarxes locals
 
 ### Estàndards de xarxa
 
@@ -508,7 +508,7 @@ Un **estàndard** és un model o patró perquè diferents fabricants el segueixi
 
 ---
 
-## 8\. Documentació tècnica
+## 8. Documentació tècnica
 
 Davant qualsevol problema, canvi o millora, cal tenir documentat correctament el sistema amb la informació més actualitzada possible. Documents imprescindibles:
 
