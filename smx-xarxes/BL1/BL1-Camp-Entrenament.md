@@ -15,7 +15,7 @@
 7. [Normativa legal i tècnica](#7-normativa-legal-i-tècnica-dimplantació-de-xarxes-locals)
 8. [Documentació tècnica](#8-documentació-tècnica)
 
-\---
+---
 
 ## 1\. Definició i tipus de xarxes
 
@@ -67,13 +67,13 @@ senyal rebuda = senyal enviada + soroll
 
 ![Relació entre les xarxes LAN, MAN i WAN segons l'abast geogràfic](./images/06-wan-man-lan.jpg)
 
-> \*\*Nota d'actualització:\*\* les taxes d'error relatives entre WAN i LAN que es donaven fa anys (WAN uns 1.000 cops pitjor) han millorat molt gràcies a la fibra òptica i als protocols de correcció d'errors moderns, però el principi General es manté: els enllaços de llarga distància solen tenir més latència i, potencialment, més pèrdua de paquets que una LAN cablejada.
+> **Nota d'actualització:** les taxes d'error relatives entre WAN i LAN que es donaven fa anys (WAN uns 1.000 cops pitjor) han millorat molt gràcies a la fibra òptica i als protocols de correcció d'errors moderns, però el principi General es manté: els enllaços de llarga distància solen tenir més latència i, potencialment, més pèrdua de paquets que una LAN cablejada.
 
 **Segons la topologia**
 
 Classificació segons com s'interconnecten físicament o lògicament els nodes. Es tracta més endavant a l'apartat 5.
 
-\---
+---
 
 ## 2\. Arquitectura i tecnologia existent
 
@@ -105,7 +105,7 @@ Les xarxes s'organitzen en **capes o nivells** per reduir la complexitat del dis
 
 Quan un usuari transmet dades a un destí, el sistema de xarxa afegeix informació de control (capçalera) a cada capa.
 
-> El model OSI va sorgir com un intent d'unificar coneixements i tècniques perquè servís de referència comuna als fabricants a l'hora de construir xarxes compatibles entre si. Avui dia és, sobretot, \*\*un model didàctic i de referència\*\*; el model que realment s'utilitza a la pràctica és \*\*TCP/IP\*\* (vegeu més avall).
+> El model OSI va sorgir com un intent d'unificar coneixements i tècniques perquè servís de referència comuna als fabricants a l'hora de construir xarxes compatibles entre si. Avui dia és, sobretot, **un model didàctic i de referència**; el model que realment s'utilitza a la pràctica és **TCP/IP** (vegeu més avall).
 
 |Capa|Nom|Funció principal|
 |-|-|-|
@@ -187,9 +187,9 @@ Protocols habituals per capa en la pila TCP/IP:
 
 ![Model OSI, model TCP/IP i el conjunt de protocols TCP/IP (HTTP, SMTP, FTP, DNS, TCP, UDP, IP, Ethernet...)](./images/12-tcpip-protocol-suite.png)
 
-> \*\*Nota d'actualització important:\*\* l'esgotament de les adreces \*\*IPv4\*\* ha fet que la implantació d'\*\*IPv6\*\* hagi avançat molt, especialment en xarxes mòbils i proveïdors d'Internet. En qualsevol formació actual de xarxes cal tenir present que IPv6 conviu amb IPv4 (doble pila, \*dual-stack\*) en la majoria d'infraestructures.
+> **Nota d'actualització important:** l'esgotament de les adreces **IPv4** ha fet que la implantació d'**IPv6** hagi avançat molt, especialment en xarxes mòbils i proveïdors d'Internet. En qualsevol formació actual de xarxes cal tenir present que IPv6 conviu amb IPv4 (doble pila, \*dual-stack\*) en la majoria d'infraestructures.
 
-\---
+---
 
 ## 3\. Definició, característiques i funcionalitats associades als elements d'una xarxa
 
@@ -210,7 +210,7 @@ A l'hora d'escollir una targeta, cal fixar-se en:
 
 Dispositiu electrònic que connecta dos segments d'una mateixa xarxa, regenerant el senyal per compensar-ne l'atenuació en distàncies llargues (per exemple, més de 100 m en cable de coure). Opera al nivell físic: és molt ràpid, però no processa les dades.
 
-> En xarxes actuals, la funció de "repetidor" ha estat absorbida en bona part pels \*\*repetidors Wi-Fi / sistemes mesh\*\* (\*mesh Wi-Fi\*), que amplien la cobertura sense fils de manera més intel·ligent que un simple repetidor de senyal.
+> En xarxes actuals, la funció de "repetidor" ha estat absorbida en bona part pels **repetidors Wi-Fi / sistemes mesh** (\*mesh Wi-Fi\*), que amplien la cobertura sense fils de manera més intel·ligent que un simple repetidor de senyal.
 
 ![Exemple físic d'un repetidor de xarxa](./images/15-repetidor.jpg)
 
@@ -218,7 +218,7 @@ Dispositiu electrònic que connecta dos segments d'una mateixa xarxa, regenerant
 
 Dispositiu que interconnectava ordinadors reenviant cada paquet rebut a **tots** els ports, deixant que cada equip decidís si el paquet era per a ell. Era poc eficient i no aïllava col·lisions.
 
-> \*\*Actualització important:\*\* els \*hubs\* estan pràcticament \*\*en desús total\*\* avui dia. Han estat substituïts íntegrament pels \*\*switchs\*\*, molt més eficients, econòmics i disponibles a qualsevol pressupost. Es manté aquí per motius històrics i de comprensió del funcionament dels switchs.
+> **Actualització important:** els \*hubs\* estan pràcticament **en desús total** avui dia. Han estat substituïts íntegrament pels **switchs**, molt més eficients, econòmics i disponibles a qualsevol pressupost. Es manté aquí per motius històrics i de comprensió del funcionament dels switchs.
 
 ![Exemple d'un switch de 24 ports Fast Ethernet](./images/16-switch-generic.jpg)
 
@@ -268,7 +268,7 @@ Dispositiu que convertia senyals digitals en analògiques (i viceversa) per tran
 ![Connectors RJ-11, utilitzats per connectar mòdems a la línia telefònica](./images/23-rj11-connector.png)
 ![Exemple d'un mòdem extern per a línia telefònica](./images/24-modem-foto.png)
 
-> \*\*Actualització important:\*\* l'ADSL i els mòdems tradicionals estan \*\*en clara decadència\*\*, substituïts majoritàriament per \*\*fibra òptica fins a la llar (FTTH)\*\* i, en zones rurals o com a alternativa, per \*\*connexions 4G/5G\*\*. El terme "mòdem" es manté d'ús comú per referir-se al dispositiu ONT/router que dona accés a Internet, encara que tècnicament ja no faci una modulació/demodulació analògica.
+> **Actualització important:** l'ADSL i els mòdems tradicionals estan **en clara decadència**, substituïts majoritàriament per **fibra òptica fins a la llar (FTTH)** i, en zones rurals o com a alternativa, per **connexions 4G/5G**. El terme "mòdem" es manté d'ús comú per referir-se al dispositiu ONT/router que dona accés a Internet, encara que tècnicament ja no faci una modulació/demodulació analògica.
 
 ### Router (capa 3)
 
@@ -289,9 +289,9 @@ Tipus:
 * **Router d'exterior**: comunica nodes i xarxes fora d'una LAN; s'utilitza al nucli d'Internet entre operadors.
 * **Router de frontera** (*Gateway router*): connecta routers interiors amb exteriors (per exemple, la LAN d'una empresa amb Internet a través de l'ISP).
 
-> \*\*Actualització:\*\* els routers domèstics i SOHO actuals integren habitualment en un sol equip les funcions de router, switch, punt d'accés Wi-Fi i, sovint, ONT de fibra òptica. En entorns empresarials, moltes d'aquestes funcions (encaminament, tallafocs, filtratge) es desenvolupen mitjançant \*\*routers/firewalls de nova generació (NGFW)\*\* i tecnologies definides per programari (\*\*SD-WAN\*\*, \*\*SDN\*\*).
+> **Actualització:** els routers domèstics i SOHO actuals integren habitualment en un sol equip les funcions de router, switch, punt d'accés Wi-Fi i, sovint, ONT de fibra òptica. En entorns empresarials, moltes d'aquestes funcions (encaminament, tallafocs, filtratge) es desenvolupen mitjançant **routers/firewalls de nova generació (NGFW)** i tecnologies definides per programari (**SD-WAN**, **SDN**).
 
-\---
+---
 
 ## 4\. Mitjans de transmissió: cables i sense fils
 
@@ -375,7 +375,7 @@ T = S / BW = 167.772.160 / 1.000.000.000 ≈ 0,168 s
 
 > \*(Nota: l'exemple original de l'apunt feia servir "Fast Ethernet (200 Mbps)", però Fast Ethernet correspon en realitat a 100 Mbps. S'ha corregit l'exemple utilitzant Gigabit Ethernet (1.000 Mbps) com a referència més realista i actual.)\*
 
-\---
+---
 
 ## 5\. Definicions de mapa físic i lògic d'una xarxa local
 
@@ -460,7 +460,7 @@ La topologia defineix l'estructura de la xarxa:
 
   ![Exemple de topologia mixta/híbrida combinant bus, estrella i altres esquemes](./images/41-topologia-mixta.jpg)
 
-> Les xarxes sense fils no tenen un medi físic visible, però l'aire (per on viatgen les ones) es considera el medi de transmissió; conceptualment es consideren de \*\*topologia en estrella\*\*, ja que qualsevol dispositiu connectat pot rebre la informació que hi circula.
+> Les xarxes sense fils no tenen un medi físic visible, però l'aire (per on viatgen les ones) es considera el medi de transmissió; conceptualment es consideren de **topologia en estrella**, ja que qualsevol dispositiu connectat pot rebre la informació que hi circula.
 
 #### Topologia lògica
 
@@ -469,13 +469,13 @@ Defineix el mètode que utilitzen els hosts per comunicar-se:
 * **Topologia broadcast**: cada host envia les seves dades a tots els altres; no hi ha ordre d'accés (el primer que arriba, transmet). És el fonament d'**Ethernet**.
 * **Topologia de token**: l'accés al medi es controla mitjançant un testimoni digital (*token*) que va passant seqüencialment d'un host a un altre. **Tecnologia pràcticament en desús** actualment (era la base de Token Ring), substituïda a la pràctica per Ethernet commutat.
 
-\---
+---
 
 ## 6\. Estructures alternatives
 
 Quan una xarxa combina diverses topologies, es parla de **xarxa mixta** o **topologia híbrida**. És l'esquema més habitual en xarxes reals d'una certa mida (per exemple, estrella estesa combinada amb un nucli en malla parcial per redundància).
 
-\---
+---
 
 ## 7\. Normativa legal i tècnica d'implantació de xarxes locals
 
@@ -504,9 +504,9 @@ Un **estàndard** és un model o patró perquè diferents fabricants el segueixi
 
 * Els **Comitès Tècnics de Normalització (CTN)**, juntament amb **UNE** (Asociación Española de Normalización), elaboren les **normes UNE**. UNE és membre d'ISO/IEC i de CEN/CENELEC.
 
-> \*\*Nota d'actualització:\*\* anteriorment l'organisme espanyol de normalització es coneixia com \*\*AENOR\*\*; des de 2017, l'activitat de normalització es porta a terme sota la marca \*\*UNE\*\* (Asociación Española de Normalización), mentre que AENOR va quedar com a entitat independent dedicada principalment a la certificació.
+> **Nota d'actualització:** anteriorment l'organisme espanyol de normalització es coneixia com **AENOR**; des de 2017, l'activitat de normalització es porta a terme sota la marca **UNE** (Asociación Española de Normalización), mentre que AENOR va quedar com a entitat independent dedicada principalment a la certificació.
 
-\---
+---
 
 ## 8\. Documentació tècnica
 
@@ -531,7 +531,7 @@ Per implantar una xarxa local cal documentar, entre d'altres:
 * els passos per instal·lar la xarxa
 * la documentació lògica i física de la xarxa
 
-> Qualsevol implementació o modificació d'una xarxa \*\*s'ha de documentar\*\*.
+> Qualsevol implementació o modificació d'una xarxa **s'ha de documentar**.
 
 
 
