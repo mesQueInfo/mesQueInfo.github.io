@@ -37,25 +37,25 @@ senyal rebuda = senyal enviada + soroll
 
 **Segons l'accés a la xarxa**
 
-!\[Diagrama de xarxa privada (LAN) connectada a Internet mitjançant un firewall](images/02-xarxa-publica-privada.jpg)
+![Diagrama de xarxa privada (LAN) connectada a Internet mitjançant un firewall](./images/02-xarxa-publica-privada.jpg)
 
 * **Xarxa d'accés públic**: la pot utilitzar qualsevol persona mitjançant l'adreça IP que li proporciona el seu proveïdor de serveis (ISP). Els equips que hi són connectats són visibles per qualsevol altre equip d'Internet.
 * **Xarxa privada**: utilitza adreces IP privades (rangs reservats, p. ex. `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`). Els equips no accedeixen directament a Internet i necessiten un router que faci de traductor entre les adreces privades i les públiques (mitjançant **NAT**, *Network Address Translation*).
 
 **Segons la tècnica de transferència de la informació**
 
-!\[Diagrama d'una xarxa commutada: diversos equips connectats a un switch central](images/03-xarxa-commutada.png)
+![Diagrama d'una xarxa commutada: diversos equips connectats a un switch central](./images/03-xarxa-commutada.png)
 
 * **Xarxes commutades (punt a punt)**: un equip origen selecciona l'equip amb què vol connectar-se i la xarxa habilita una via de connexió. El dispositiu habitual és el commutador o *switch*.
 
-!\[Diagrama d'una xarxa client-servidor](images/04-xarxa-client-servidor.png)
+![Diagrama d'una xarxa client-servidor](./images/04-xarxa-client-servidor.png)
 
 * **Xarxes client-servidor**: hi ha un o diversos servidors i diversos clients o terminals. El servidor centralitza processos i dades, cosa que millora l'eficiència i la seguretat en xarxes amb molts usuaris.
 * **Xarxes broadcast**: un equip envia la informació a tots els equips de la xarxa; cada màquina comprova el camp d'adreça del paquet i el processa només si va dirigit a ella. Actualment, en Ethernet commutat, el broadcast es limita a trames concretes (ARP, DHCP, etc.) i no és el mètode general de transmissió com ho era amb els *hubs*.
 
 **Segons la localització geogràfica**
 
-!\[Dispositius personals interconnectats (PAN): portàtil, impressora, mòbil i PDA](images/05-xarxa-pan.jpg)
+![Dispositius personals interconnectats (PAN): portàtil, impressora, mòbil i PDA](./images/05-xarxa-pan.jpg)
 
 |Tipus|Abast|Característiques|
 |-|-|-|
@@ -65,7 +65,7 @@ senyal rebuda = senyal enviada + soroll
 |**WAN** (*Wide Area Network*)|Diverses ciutats, països, continents|Es basa en línies de comunicació d'operadors de telecomunicacions; Internet n'és l'exemple més gran. Actualment moltes WAN corporatives utilitzen **SD-WAN**, que gestiona el trànsit de manera intel·ligent entre diverses connexions (fibra, 4G/5G, MPLS).|
 |**WLAN** (*Wireless LAN*)|Xarxa d'àrea local sense cables|Ús general a llars i empreses. Estàndards actuals: **Wi-Fi 5 (802.11ac)**, **Wi-Fi 6 / 6E (802.11ax)** i **Wi-Fi 7 (802.11be)**, amb velocitats teòriques de diversos Gbps.|
 
-!\[Relació entre les xarxes LAN, MAN i WAN segons l'abast geogràfic](images/06-wan-man-lan.jpg)
+![Relació entre les xarxes LAN, MAN i WAN segons l'abast geogràfic](./images/06-wan-man-lan.jpg)
 
 > \*\*Nota d'actualització:\*\* les taxes d'error relatives entre WAN i LAN que es donaven fa anys (WAN uns 1.000 cops pitjor) han millorat molt gràcies a la fibra òptica i als protocols de correcció d'errors moderns, però el principi General es manté: els enllaços de llarga distància solen tenir més latència i, potencialment, més pèrdua de paquets que una LAN cablejada.
 
@@ -97,7 +97,7 @@ Les xarxes s'organitzen en **capes o nivells** per reduir la complexitat del dis
 * Cada nivell es comunica només amb el nivell immediatament superior i inferior.
 * Cada nivell dona serveis al nivell superior.
 
-!\[Exemple de capes i serveis aplicat a un restaurant: cuiners, cambrers i clients](images/07-exemple-capes-restaurant.png)
+![Exemple de capes i serveis aplicat a un restaurant: cuiners, cambrers i clients](./images/07-exemple-capes-restaurant.png)
 
 ### Model de referència OSI
 
@@ -117,7 +117,7 @@ Quan un usuari transmet dades a un destí, el sistema de xarxa afegeix informaci
 |2|Enllaç de dades|Trames, adreçament físic (MAC), control d'errors i de flux.|
 |1|Física|Medi de transmissió, senyal, connectors.|
 
-!\[Les 7 capes del model OSI, de la capa física a la d'aplicació](images/08-osi-7-capes.jpg)
+![Les 7 capes del model OSI, de la capa física a la d'aplicació](./images/08-osi-7-capes.jpg)
 
 **1. Capa física** — medis de transmissió, cablejat i connectors, espectre electromagnètic, multiplexació, dispositius com targetes de xarxa i concentradors.
 
@@ -147,9 +147,9 @@ Cada nivell gestiona una **unitat de dades de protocol (PDU)** pròpia:
 
 **Encapsulació**: procés pel qual les dades inicials es divideixen i se'ls afegeixen capçaleres a cada capa per ser transmeses. **Desencapsulació**: el procés invers, al receptor.
 
-!\[Procés d'encapsulació de les dades a cada capa OSI, amb la unitat de dades corresponent (APDU, PPDU, SPDU, TPDU, paquet, trama, bit)](images/09-encapsulacio-dades.png)
+![Procés d'encapsulació de les dades a cada capa OSI, amb la unitat de dades corresponent (APDU, PPDU, SPDU, TPDU, paquet, trama, bit)](./images/09-encapsulacio-dades.png)
 
-!\[Les 7 capes OSI amb els seus protocols i tecnologies associades a cada nivell](images/10-osi-capes-detall.png)
+![Les 7 capes OSI amb els seus protocols i tecnologies associades a cada nivell](./images/10-osi-capes-detall.png)
 
 ### Arquitectura TCP/IP
 
@@ -167,7 +167,7 @@ TCP/IP no és un únic protocol, sinó una arquitectura completa organitzada en 
 |Internet|Xarxa|
 |Accés a la xarxa (NAL)|Enllaç de dades + Física|
 
-!\[Comparació visual entre les capes del model TCP/IP i les del model OSI](images/11-tcpip-vs-osi.png)
+![Comparació visual entre les capes del model TCP/IP i les del model OSI](./images/11-tcpip-vs-osi.png)
 
 Encapsulació en TCP/IP:
 
@@ -185,7 +185,7 @@ Protocols habituals per capa en la pila TCP/IP:
 * **Internet**: IP (IPv4 i, cada cop més, **IPv6**), ARP, ICMP, IGMP.
 * **Accés a la xarxa**: Ethernet, Wi-Fi (802.11), *Token Ring* i *ATM* (aquests dos, avui pràcticament en desús).
 
-!\[Model OSI, model TCP/IP i el conjunt de protocols TCP/IP (HTTP, SMTP, FTP, DNS, TCP, UDP, IP, Ethernet...)](images/12-tcpip-protocol-suite.png)
+![Model OSI, model TCP/IP i el conjunt de protocols TCP/IP (HTTP, SMTP, FTP, DNS, TCP, UDP, IP, Ethernet...)](./images/12-tcpip-protocol-suite.png)
 
 > \*\*Nota d'actualització important:\*\* l'esgotament de les adreces \*\*IPv4\*\* ha fet que la implantació d'\*\*IPv6\*\* hagi avançat molt, especialment en xarxes mòbils i proveïdors d'Internet. En qualsevol formació actual de xarxes cal tenir present que IPv6 conviu amb IPv4 (doble pila, \*dual-stack\*) en la majoria d'infraestructures.
 
@@ -203,8 +203,8 @@ A l'hora d'escollir una targeta, cal fixar-se en:
 * El tipus de connexió: **RJ-45** (parell trenat) per a cable, o antena/xip per a Wi-Fi. El cable coaxial (connector BNC) és **tecnologia obsoleta**, pràcticament fora d'ús.
 * El tipus de connector intern: **PCIe** i **M.2** en equips actuals; **USB** per a adaptadors externs. Connectors antics com ISA, PCI o PCMCIA ja no s'utilitzen en maquinari modern.
 
-!\[Targeta de xarxa sense fils (Wi-Fi) i targeta de xarxa Ethernet PCIe](images/13-nic-wifi.jpg)
-!\[Targeta de xarxa Ethernet interna amb connector PCIe](images/14-nic-ethernet.png)
+![Targeta de xarxa sense fils (Wi-Fi) i targeta de xarxa Ethernet PCIe](./images/13-nic-wifi.jpg)
+![Targeta de xarxa Ethernet interna amb connector PCIe](./images/14-nic-ethernet.png)
 
 ### Repetidor (capa 1)
 
@@ -212,7 +212,7 @@ Dispositiu electrònic que connecta dos segments d'una mateixa xarxa, regenerant
 
 > En xarxes actuals, la funció de "repetidor" ha estat absorbida en bona part pels \*\*repetidors Wi-Fi / sistemes mesh\*\* (\*mesh Wi-Fi\*), que amplien la cobertura sense fils de manera més intel·ligent que un simple repetidor de senyal.
 
-!\[Exemple físic d'un repetidor de xarxa](images/15-repetidor.jpg)
+![Exemple físic d'un repetidor de xarxa](./images/15-repetidor.jpg)
 
 ### Hub o concentrador (capa 1) — **tecnologia obsoleta**
 
@@ -220,20 +220,20 @@ Dispositiu que interconnectava ordinadors reenviant cada paquet rebut a **tots**
 
 > \*\*Actualització important:\*\* els \*hubs\* estan pràcticament \*\*en desús total\*\* avui dia. Han estat substituïts íntegrament pels \*\*switchs\*\*, molt més eficients, econòmics i disponibles a qualsevol pressupost. Es manté aquí per motius històrics i de comprensió del funcionament dels switchs.
 
-!\[Exemple d'un switch de 24 ports Fast Ethernet](images/16-switch-generic.jpg)
+![Exemple d'un switch de 24 ports Fast Ethernet](./images/16-switch-generic.jpg)
 
 ### Servidor d'impressió o *print server* (capa 1)
 
 Dispositiu que permet connectar una impressora a la xarxa mitjançant cable o Wi-Fi, assignant-li una adreça IP pròpia. Avui en dia, la majoria d'impressores incorporen aquesta funcionalitat de fàbrica (targeta de xarxa i/o Wi-Fi integrats), fent innecessari un dispositiu extern en la majoria de casos.
 
-!\[Servidor d'impressió sense fils, que dona una adreça IP pròpia a la impressora](images/17-print-server.jpg)
-!\[Targeta de xarxa sense fils utilitzada com a exemple de servidor d'impressió](images/18-nic-wifi-2.jpg)
+![Servidor d'impressió sense fils, que dona una adreça IP pròpia a la impressora](./images/17-print-server.jpg)
+![Targeta de xarxa sense fils utilitzada com a exemple de servidor d'impressió](./images/18-nic-wifi-2.jpg)
 
 ### Bridge o pont (capa 2)
 
 Dispositiu capaç de dividir la xarxa en dos segments, de manera que el trànsit d'un segment no col·lisiona amb el de l'altre. Té capacitat de control: accepta o filtra trames segons el seu contingut (adreça MAC). Avui dia aquesta funció s'ha integrat pràcticament del tot dins els switchs.
 
-!\[Un pont (bridge) divideix la xarxa en dos segments independents](images/19-bridge-pont.png)
+![Un pont (bridge) divideix la xarxa en dos segments independents](./images/19-bridge-pont.png)
 
 ### Switch o commutador (capa 2)
 
@@ -247,11 +247,11 @@ Característiques:
 * Reparteix l'ample de banda de forma eficient.
 * Molts models comercials són apilables i escalables.
 
-!\[Exemple d'un switch comercial de 24 ports](images/21-switch-dlink.jpg)
+![Exemple d'un switch comercial de 24 ports](./images/21-switch-dlink.jpg)
 
 **Funcionament:** el commutador construeix una taula per cada port amb les adreces MAC dels dispositius que hi veu, i només envia cada trama pel port on es troba el destinatari.
 
-!\[Funcionament d'un switch: taula d'adreces MAC per port i enviament selectiu de trames](images/20-switch-funcionament.png)
+![Funcionament d'un switch: taula d'adreces MAC per port i enviament selectiu de trames](./images/20-switch-funcionament.png)
 
 Els **switchs gestionables** (capa 2 o capa 3) utilitzen protocols de gestió (SNMP, RMON) i permeten crear **VLANs**, balancejar càrrega, aplicar QoS i, en el cas dels de capa 3, encaminar trànsit entre xarxes. Actualment és habitual que fins i tot switchs d'ús domèstic/SOHO ofereixin gestió bàsica via web.
 
@@ -259,14 +259,14 @@ Els **switchs gestionables** (capa 2 o capa 3) utilitzen protocols de gestió (S
 
 Dispositiu que recull el senyal sense fils dels dispositius Wi-Fi i el transforma en senyal de cable per enviar-lo al switch (o viceversa). Els punts d'accés actuals solen suportar estàndards **Wi-Fi 5/6/6E/7**, múltiples bandes (2.4 GHz, 5 GHz i 6 GHz) i, en entorns empresarials, es gestionen de manera centralitzada mitjançant un **controlador Wi-Fi** o des del núvol.
 
-!\[Punt d'accés Wi-Fi amb antenes externes i font d'alimentació](images/22-access-point.jpg)
+![Punt d'accés Wi-Fi amb antenes externes i font d'alimentació](./images/22-access-point.jpg)
 
 ### Mòdem (capa 1/2) — **ús molt reduït**
 
 Dispositiu que convertia senyals digitals en analògiques (i viceversa) per transmetre dades per la línia telefònica ("modular"/"demodular"). Els mòdems ADSL ja treballaven directament sobre línies digitals.
 
-!\[Connectors RJ-11, utilitzats per connectar mòdems a la línia telefònica](images/23-rj11-connector.png)
-!\[Exemple d'un mòdem extern per a línia telefònica](images/24-modem-foto.png)
+![Connectors RJ-11, utilitzats per connectar mòdems a la línia telefònica](./images/23-rj11-connector.png)
+![Exemple d'un mòdem extern per a línia telefònica](./images/24-modem-foto.png)
 
 > \*\*Actualització important:\*\* l'ADSL i els mòdems tradicionals estan \*\*en clara decadència\*\*, substituïts majoritàriament per \*\*fibra òptica fins a la llar (FTTH)\*\* i, en zones rurals o com a alternativa, per \*\*connexions 4G/5G\*\*. El terme "mòdem" es manté d'ús comú per referir-se al dispositiu ONT/router que dona accés a Internet, encara que tècnicament ja no faci una modulació/demodulació analògica.
 
@@ -274,7 +274,7 @@ Dispositiu que convertia senyals digitals en analògiques (i viceversa) per tran
 
 El router o encaminador és un dispositiu (maquinari o programari) que encamina paquets entre xarxes diferents, calculant el millor camí (segons la seva **taula de rutes**) perquè arribin de l'origen al destí.
 
-!\[Panell posterior d'un router: connexió ADSL, USB, Ethernet, reset i alimentació](images/25-router-panell-posterior.png)
+![Panell posterior d'un router: connexió ADSL, USB, Ethernet, reset i alimentació](./images/25-router-panell-posterior.png)
 
 Característiques:
 
@@ -297,7 +297,7 @@ Tipus:
 
 El medi de transmissió és el material a través del qual viatgen els paquets de dades.
 
-!\[Comunicació sense fils mitjançant antena parabòlica i torre de transmissió](images/26-medi-sense-fils.jpg)
+![Comunicació sense fils mitjançant antena parabòlica i torre de transmissió](./images/26-medi-sense-fils.jpg)
 
 ### Medis guiats (cablejats)
 
@@ -395,11 +395,11 @@ Representa la disposició real dels elements: ubicació dels equips, canaletes, 
 
 **Exemples de diagrames de mapes físics de xarxa:**
 
-!\[Mapa físic d'una aula d'informàtica amb PCs, canaletes, armari i switch](images/27-mapa-fisic-aula.jpg)
+![Mapa físic d'una aula d'informàtica amb PCs, canaletes, armari i switch](./images/27-mapa-fisic-aula.jpg)
 
-!\[Mapa físic d'una oficina amb monitorització de l'estat dels enllaços i la càrrega de trànsit](images/28-mapa-fisic-oficina-1.png)
+![Mapa físic d'una oficina amb monitorització de l'estat dels enllaços i la càrrega de trànsit](./images/28-mapa-fisic-oficina-1.png)
 
-!\[Mapa físic d'una planta d'oficines amb la distribució de llocs de treball](images/29-mapa-fisic-oficina-2.png)
+![Mapa físic d'una planta d'oficines amb la distribució de llocs de treball](./images/29-mapa-fisic-oficina-2.png)
 
 ### Mapa lògic
 
@@ -407,15 +407,15 @@ Representa l'estructura lògica de la xarxa: adreces IP, adreces MAC, noms dels 
 
 **Exemple de diagrama de mapa lògic de xarxa:**
 
-!\[Mapa lògic amb les adreces IP i MAC de cada equip, impressora i router](images/30-mapa-logic-ips.png)
+![Mapa lògic amb les adreces IP i MAC de cada equip, impressora i router](./images/30-mapa-logic-ips.png)
 
-!\[Exemple d'etiquetatge dels ports d'un patch panel](images/31-patch-panel-etiquetes.png)
+![Exemple d'etiquetatge dels ports d'un patch panel](./images/31-patch-panel-etiquetes.png)
 
-!\[Exemple de xarxa d'un centre educatiu amb diverses aules, switchs i un punt d'accés](images/32-xarxa-centre-educatiu.png)
+![Exemple de xarxa d'un centre educatiu amb diverses aules, switchs i un punt d'accés](./images/32-xarxa-centre-educatiu.png)
 
-!\[Esquema d'una xarxa amb VLANs i un rack principal (router-firewall, switch de capçalera, controladora Wi-Fi)](images/33-xarxa-vlans-rack.jpg)
+![Esquema d'una xarxa amb VLANs i un rack principal (router-firewall, switch de capçalera, controladora Wi-Fi)](./images/33-xarxa-vlans-rack.jpg)
 
-!\[Exemple de xarxa d'una empresa comercial amb switch, firewall, servidor NAS i Wi-Fi](images/34-xarxa-comercial-exemple.jpg)
+![Exemple de xarxa d'una empresa comercial amb switch, firewall, servidor NAS i Wi-Fi](./images/34-xarxa-comercial-exemple.jpg)
 
 ### Topologies de xarxes locals: físiques i lògiques
 
@@ -431,34 +431,34 @@ La topologia defineix l'estructura de la xarxa:
   * *Avantatges*: fàcil afegir nodes; requereix poc cable.
   * *Inconvenients*: si es trenca el cable principal, tota la xarxa cau; calen terminadors; difícil de diagnosticar; no recomanable per a edificis grans. **Tecnologia pràcticament obsoleta avui dia.**
 
-  !\[Topologia física en bus: tots els equips connectats a un únic segment de cable](images/35-topologia-bus.jpg)
+  ![Topologia física en bus: tots els equips connectats a un únic segment de cable](./images/35-topologia-bus.jpg)
 
 * **Topologia en anell**: cada equip es connecta amb el següent, i l'últim amb el primer. Mateixos avantatges/inconvenients que el bus, però sense necessitat de terminadors. **També en desús** en xarxes locals modernes (es manté conceptualment en alguns protocols d'anell com **Token Ring**, ja obsolet, o en anells de fibra en xarxes d'operador amb finalitat de redundància).
 
-  !\[Topologia física en anell: cada equip connectat al següent formant un cercle](images/36-topologia-anell.jpg)
+  ![Topologia física en anell: cada equip connectat al següent formant un cercle](./images/36-topologia-anell.jpg)
 
 * **Topologia en estrella**: totes les línies es connecten a un punt central (switch). És la **topologia física dominant avui dia** en xarxes LAN cablejades.
 
   * *Avantatges*: fàcil instal·lació; es pot desconnectar un node sense afectar la resta; fàcil de diagnosticar.
   * *Inconvenients*: requereix més cable que el bus; si falla el switch central, s'aïllen tots els nodes connectats a ell; cal comprar switchs.
 
-  !\[Topologia física en estrella: tots els equips connectats a un switch central](images/37-topologia-estrella.jpg)
+  ![Topologia física en estrella: tots els equips connectats a un switch central](./images/37-topologia-estrella.jpg)
 
 * **Topologia en estrella estesa**: diverses xarxes en estrella es connecten entre si (switchs interconnectats), formant una xarxa més gran. És l'esquema típic de moltes xarxes d'empresa i de campus actuals.
 
-  !\[Topologia en estrella estesa: diversos switchs interconnectats, cadascun amb el seu grup d'equips](images/38-topologia-estrella-estesa.jpg)
+  ![Topologia en estrella estesa: diversos switchs interconnectats, cadascun amb el seu grup d'equips](./images/38-topologia-estrella-estesa.jpg)
 
 * **Topologia jeràrquica**: diverses xarxes en estrella es connecten a través d'un equip/switch central que actua com a "arrel", en forma d'arbre. Molt utilitzada en el disseny de xarxes corporatives (nucli - distribució - accés).
 
-  !\[Topologia jeràrquica: els switchs es connecten a un switch central que fa de node arrel](images/39-topologia-jerarquica.jpg)
+  ![Topologia jeràrquica: els switchs es connecten a un switch central que fa de node arrel](./images/39-topologia-jerarquica.jpg)
 
 * **Topologia en malla**: tots els nodes es connecten entre si. Molt redundant i tolerant a fallades, però costosa en cablejat. Actualment es reprodueix, de manera pràctica i eficient, en els **sistemes Wi-Fi mesh**, molt populars per donar cobertura sense fils a la llar sense necessitat de cablejar cada punt d'accés.
 
-  !\[Topologia en malla: tots els equips connectats entre si](images/40-topologia-malla.jpg)
+  ![Topologia en malla: tots els equips connectats entre si](./images/40-topologia-malla.jpg)
 
 * **Topologia mixta / híbrida**: combinació de diverses topologies.
 
-  !\[Exemple de topologia mixta/híbrida combinant bus, estrella i altres esquemes](images/41-topologia-mixta.jpg)
+  ![Exemple de topologia mixta/híbrida combinant bus, estrella i altres esquemes](./images/41-topologia-mixta.jpg)
 
 > Les xarxes sense fils no tenen un medi físic visible, però l'aire (per on viatgen les ones) es considera el medi de transmissió; conceptualment es consideren de \*\*topologia en estrella\*\*, ja que qualsevol dispositiu connectat pot rebre la informació que hi circula.
 
