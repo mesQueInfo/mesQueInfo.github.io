@@ -31,7 +31,7 @@ L'objectiu és connectar diferents equips perquè intercanviïn informació. El 
 senyal rebuda = senyal enviada + soroll
 ```
 
-!\[Exemple d'esquema d'una xarxa domèstica amb router, servidors i punt d'accés](images/01-xarxa-domestica-exemple.png)
+!\[Exemple d'esquema d'una xarxa domèstica amb router, servidors i punt d'accés](./images/01-xarxa-domestica-exemple.png)
 
 ### Tipus de xarxes
 
