@@ -9,6 +9,3 @@ permalink: /smx-xarxes/
 ## Continguts
 
 - [BL1. El Camp d'entrenament](BL1/BL1-Camp-Entrenament.md)
-- [README de la carpeta](README.md)
-
-Aquesta pàgina es serveix amb GitHub Pages i Jekyll.
