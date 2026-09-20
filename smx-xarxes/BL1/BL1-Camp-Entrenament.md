@@ -1,7 +1,5 @@
 # TEORIA BL1 — El Camp d'entrenament
 
-
-
 **CFGM SMX · 0225 Xarxes Locals**
 
 ## Índex
@@ -17,7 +15,7 @@
 
 ---
 
-## 1. Definició i tipus de xarxes
+## 1\. Definició i tipus de xarxes
 
 ### Què és una xarxa?
 
@@ -71,11 +69,11 @@ senyal rebuda = senyal enviada + soroll
 
 **Segons la topologia**
 
-Classificació segons com s'interconnecten físicament o lògicament els nodes. Es tractarà més endavant.
+Classificació segons com s'interconnecten físicament o lògicament els nodes. Es tracta més endavant a l'apartat 5.
 
 ---
 
-## 2. Arquitectura i tecnologia existent
+## 2\. Arquitectura i tecnologia existent
 
 ### Serveis i protocols
 
@@ -187,11 +185,11 @@ Protocols habituals per capa en la pila TCP/IP:
 
 ![Model OSI, model TCP/IP i el conjunt de protocols TCP/IP (HTTP, SMTP, FTP, DNS, TCP, UDP, IP, Ethernet...)](./images/12-tcpip-protocol-suite.png)
 
-> **Nota d'actualització important:** l'esgotament de les adreces **IPv4** ha fet que la implantació d'**IPv6** hagi avançat molt, especialment en xarxes mòbils i proveïdors d'Internet. En qualsevol formació actual de xarxes cal tenir present que IPv6 conviu amb IPv4 (doble pila, \*dual-stack\*) en la majoria d'infraestructures.
+> **Nota d'actualització important:** l'esgotament de les adreces **IPv4** ha fet que la implantació d'**IPv6** hagi avançat molt, especialment en xarxes mòbils i proveïdors d'Internet. En qualsevol formació actual de xarxes cal tenir present que IPv6 conviu amb IPv4 (doble pila, *dual-stack*) en la majoria d'infraestructures.
 
 ---
 
-## 3. Definició, característiques i funcionalitats associades als elements d'una xarxa
+## 3\. Definició, característiques i funcionalitats associades als elements d'una xarxa
 
 ### Targeta de xarxa o NIC (capa 1/2)
 
@@ -210,7 +208,7 @@ A l'hora d'escollir una targeta, cal fixar-se en:
 
 Dispositiu electrònic que connecta dos segments d'una mateixa xarxa, regenerant el senyal per compensar-ne l'atenuació en distàncies llargues (per exemple, més de 100 m en cable de coure). Opera al nivell físic: és molt ràpid, però no processa les dades.
 
-> En xarxes actuals, la funció de "repetidor" ha estat absorbida en bona part pels **repetidors Wi-Fi / sistemes mesh** (\*mesh Wi-Fi\*), que amplien la cobertura sense fils de manera més intel·ligent que un simple repetidor de senyal.
+> En xarxes actuals, la funció de "repetidor" ha estat absorbida en bona part pels **repetidors Wi-Fi / sistemes mesh** (*mesh Wi-Fi*), que amplien la cobertura sense fils de manera més intel·ligent que un simple repetidor de senyal.
 
 ![Exemple físic d'un repetidor de xarxa](./images/15-repetidor.jpg)
 
@@ -218,7 +216,7 @@ Dispositiu electrònic que connecta dos segments d'una mateixa xarxa, regenerant
 
 Dispositiu que interconnectava ordinadors reenviant cada paquet rebut a **tots** els ports, deixant que cada equip decidís si el paquet era per a ell. Era poc eficient i no aïllava col·lisions.
 
-> **Actualització important:** els \*hubs\* estan pràcticament **en desús total** avui dia. Han estat substituïts íntegrament pels **switchs**, molt més eficients, econòmics i disponibles a qualsevol pressupost. Es manté aquí per motius històrics i de comprensió del funcionament dels switchs.
+> **Actualització important:** els *hubs* estan pràcticament **en desús total** avui dia. Han estat substituïts íntegrament pels **switchs**, molt més eficients, econòmics i disponibles a qualsevol pressupost. Es manté aquí per motius històrics i de comprensió del funcionament dels switchs.
 
 ![Exemple d'un switch de 24 ports Fast Ethernet](./images/16-switch-generic.jpg)
 
@@ -293,7 +291,7 @@ Tipus:
 
 ---
 
-## 4. Mitjans de transmissió: cables i sense fils
+## 4\. Mitjans de transmissió: cables i sense fils
 
 El medi de transmissió és el material a través del qual viatgen els paquets de dades.
 
@@ -373,11 +371,11 @@ BW = 1 Gbps = 1.000.000.000 bps
 T = S / BW = 167.772.160 / 1.000.000.000 ≈ 0,168 s
 ```
 
-> \*(Nota: l'exemple original de l'apunt feia servir "Fast Ethernet (200 Mbps)", però Fast Ethernet correspon en realitat a 100 Mbps. S'ha corregit l'exemple utilitzant Gigabit Ethernet (1.000 Mbps) com a referència més realista i actual.)\*
+> *(Nota: l'exemple original de l'apunt feia servir "Fast Ethernet (200 Mbps)", però Fast Ethernet correspon en realitat a 100 Mbps. S'ha corregit l'exemple utilitzant Gigabit Ethernet (1.000 Mbps) com a referència més realista i actual.)*
 
 ---
 
-## 5. Definicions de mapa físic i lògic d'una xarxa local
+## 5\. Definicions de mapa físic i lògic d'una xarxa local
 
 Els plànols i gràfics que representen una xarxa s'han de documentar amb aplicacions informàtiques adequades.
 
@@ -471,13 +469,13 @@ Defineix el mètode que utilitzen els hosts per comunicar-se:
 
 ---
 
-## 6. Estructures alternatives
+## 6\. Estructures alternatives
 
 Quan una xarxa combina diverses topologies, es parla de **xarxa mixta** o **topologia híbrida**. És l'esquema més habitual en xarxes reals d'una certa mida (per exemple, estrella estesa combinada amb un nucli en malla parcial per redundància).
 
 ---
 
-## 7. Normativa legal i tècnica d'implantació de xarxes locals
+## 7\. Normativa legal i tècnica d'implantació de xarxes locals
 
 ### Estàndards de xarxa
 
@@ -508,7 +506,7 @@ Un **estàndard** és un model o patró perquè diferents fabricants el segueixi
 
 ---
 
-## 8. Documentació tècnica
+## 8\. Documentació tècnica
 
 Davant qualsevol problema, canvi o millora, cal tenir documentat correctament el sistema amb la informació més actualitzada possible. Documents imprescindibles:
 
